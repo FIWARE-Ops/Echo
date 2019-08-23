@@ -1,4 +1,4 @@
-# Echo server for testing purposes
+# Mock server for testing purposes
 
 ## Overview
 
@@ -7,7 +7,7 @@ It provides a basic functionality (reply with correct status codes) for function
 ## How to use
 
 ```bash
-docker run -d -p 1026:1026 fiware/echo:orion
+docker run -d -p 1026:1026 fiware/service.mock:orion --workers 2
 curl -XGET http://localhost:1026/version
 ```
 ```json

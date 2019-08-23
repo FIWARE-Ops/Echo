@@ -3,6 +3,8 @@
 
 from aiohttp import web
 from argparse import ArgumentParser
+from asyncio import set_event_loop_policy
+from uvloop import EventLoopPolicy
 from yajl import dumps
 
 routes = web.RouteTableDef()
@@ -211,12 +213,13 @@ async def handle(request):
 if __name__ == '__main__':
 
     parser = ArgumentParser()
-    parser.add_argument('--ip', dest="ip", default='0.0.0.0', help='ip address (default: 0.0.0.0)', action="store")
-    parser.add_argument('--port', dest="port", default=1026, help='ort (default: 1026)', action="store")
+    parser.add_argument('--path', dest="path", action="store")
 
     args = parser.parse_args()
+
+    set_event_loop_policy(EventLoopPolicy())
 
     app = web.Application()
     app.add_routes(routes)
 
-    web.run_app(app, host=args.ip, port=args.port)
+    web.run_app(app, path=args.path)
