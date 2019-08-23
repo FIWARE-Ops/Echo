@@ -6,4 +6,4 @@ It provides a basic functionality (reply with correct status codes) for function
 
 Supported enablers:
   - [iot-agents](https://github.com/FIWARE-Ops/Echo/tree/master/iot-agents)
-  
+  - [orion](https://github.com/FIWARE-Ops/Echo/tree/master/orion)

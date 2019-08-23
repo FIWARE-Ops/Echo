@@ -8,11 +8,6 @@ from yajl import dumps
 routes = web.RouteTableDef()
 
 
-@routes.get('/')
-async def handle(request):
-    return web.Response(text='Up')
-
-
 @routes.get('/version')
 async def handle(request):
     reply = {
@@ -176,6 +171,41 @@ async def handle(request):
 @routes.post('/v2/op/notify')
 async def handle(request):
     return web.HTTPOk()
+
+# Legacy v1
+@routes.post('/v1/updateContext')
+async def handle(request):
+    return web.HTTPOk()
+
+
+@routes.get('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.method + ' ' + request.raw_path + '\n', status=404)
+
+
+@routes.post('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.method + ' ' + request.raw_path + '\n', status=404)
+
+
+@routes.put('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.method + ' ' + request.raw_path + '\n', status=404)
+
+
+@routes.patch('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.method + ' ' + request.raw_path + '\n', status=404)
+
+
+@routes.delete('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.raw_path + '\n', status=404)
 
 
 if __name__ == '__main__':

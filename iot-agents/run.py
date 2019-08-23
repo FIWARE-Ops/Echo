@@ -44,6 +44,36 @@ async def handle(request):
     return web.HTTPOk()
 
 
+@routes_provisioning.get('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.raw_path + '\n', status=404)
+
+
+@routes_provisioning.post('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.raw_path + '\n', status=404)
+
+
+@routes_provisioning.put('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.raw_path + '\n', status=404)
+
+
+@routes_provisioning.patch('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.raw_path + '\n', status=404)
+
+
+@routes_provisioning.delete('/{tail:.*}')
+async def handle(request):
+    print(request.raw_path)
+    return web.Response(text=request.raw_path + '\n', status=404)
+
+
 async def start(host, port_south, port_provisioning):
     app_south = web.Application()
     app_south.router.add_routes(routes_south)
